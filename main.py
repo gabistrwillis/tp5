@@ -1,4 +1,5 @@
 import cmath
+import matplotlib.pyplot as plt
 
 
 class Point:
@@ -47,6 +48,9 @@ class Point:
     Le signe du det va permettre de déterminer si le point self se situe en haut de la droite AB (si le det est >0) ou bien si le point se situe en bas de la droite (si le det est <0)
     '''
 
+    def __lt__(self, other):
+        return self<other
+
 
 
 
@@ -58,3 +62,29 @@ p2=Point(2,1)
 p3=Point(1.5, 0)
 print(p.distance_point(p2))
 print(p3.det(p, p2))
+
+
+class Points:
+    def __init__(self,*v):
+        self.l=[]
+        for i in range (len(v)):
+            self.l.append(Point(v[i]))
+
+    def plot(self):
+        plt.axis('equal')
+        x=[i.x for i in self.l]
+        y=[i.y for i in self.l]
+
+        plt.scatter(x, y,color='green')
+        plt.show()
+
+    def extreme(self):
+        x=[i.x for i in self.l]
+        y = [i.y for i in self.l]
+        min(x)
+
+l= [Point(0,1),Point(1,0),Point(1,1)]
+lp = Points( Point(0,1),Point(1,0),Point(1,1) )
+
+print( lp.l[2])
+lp.plot()
