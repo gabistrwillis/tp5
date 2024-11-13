@@ -30,14 +30,31 @@ class Point:
             return True
 
     def angle(self, otherpoint):
+        vecteur = {'x':0,'y':0}
         vecteur.x=(otherpoint.x-self.x)
         vecteur.y=(otherpoint.y-self.y)
         return cmath.phase(complex(vecteur.x,vecteur.y))
 
+    def distance_point(self,other):
+        return cmath.sqrt((other.x-self.x)**2+(other.y-self.y)**2)
 
 
-p=Point(1,2)
-p1=Point(p)
-print(p1)
-print(p)
-p1==p
+    def det(self, A, B):
+
+        d=(A.x-self.x)*(B.y-self.y)-(B.x-self.x)*(A.y-self.y)
+        return d
+    '''
+    Le signe du det va permettre de déterminer si le point self se situe en haut de la droite AB (si le det est >0) ou bien si le point se situe en bas de la droite (si le det est <0)
+    '''
+
+
+
+
+
+
+
+p=Point(1,0)
+p2=Point(2,1)
+p3=Point(1.5, 0)
+print(p.distance_point(p2))
+print(p3.det(p, p2))
